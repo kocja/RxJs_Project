@@ -4,9 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server.
 
-# What is RxJS?
+## What is RxJS?
 
 As per the official website of RxJS, it is defined as a library for composing asynchronous and event-based programs by
 using observable sequences. It provides one core type, the Observable, satellite types (Observer, Schedulers, Subjects)
@@ -46,7 +46,7 @@ functionality goes for subject too.
 
 A scheduler controls the execution of when the subscription has to start and notified.
 
-# When to use RxJS?
+## When to use RxJS?
 
 If your project consists of lots of async task handling than RxJS is a good choice. It is loaded by default with the
 Angular project.
