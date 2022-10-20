@@ -1,5 +1,11 @@
-import {Component} from '@angular/core';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Component, Inject} from '@angular/core';
+import {Operator, OperatorToken} from "./operator";
+
+interface ButtonConfig {
+  disabled?: boolean,
+  label: string;
+  callback: () => unknown
+}
 
 @Component({
   selector: 'app-root',
@@ -7,12 +13,21 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private modalService: NgbModal) {
+
+  buttonConfigs: ButtonConfig[];
+
+  constructor(@Inject(OperatorToken) private operators: Operator[]
+  ) {
+    this.buttonConfigs = operators.map(operator => {
+      let buttonConfig = <ButtonConfig>{
+        disabled: undefined,
+        callback: () => {
+          buttonConfig.disabled = true;
+          operator.subscribe().add(() => buttonConfig.disabled = undefined)
+        },
+        label: operator.name
+      };
+      return buttonConfig
+    });
   }
-
-  public open(modal: any): void {
-    this.modalService.open(modal);
-  }
-
-
 }
